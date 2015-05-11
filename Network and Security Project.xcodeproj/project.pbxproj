@@ -57,9 +57,25 @@
 		D8CF3C941B0109430007F03C /* Network and Security Project */ = {
 			isa = PBXGroup;
 			children = (
+				D8CF3C9D1B0109540007F03C /* Bank Side */,
+				D8CF3C9C1B01094C0007F03C /* Collecter Side */,
 				D8CF3C951B0109430007F03C /* main.c */,
 			);
 			path = "Network and Security Project";
+			sourceTree = "<group>";
+		};
+		D8CF3C9C1B01094C0007F03C /* Collecter Side */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Collecter Side";
+			sourceTree = "<group>";
+		};
+		D8CF3C9D1B0109540007F03C /* Bank Side */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Bank Side";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
