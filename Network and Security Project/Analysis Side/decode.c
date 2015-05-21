@@ -5,7 +5,8 @@
  Okay, let's make this project simple as,
  the collecter send the random page.
  */
-#include <stdio.h>
+
+#include "analysis.h"
 
 int decode_table_init() {
     /*
@@ -48,3 +49,17 @@ int decode_table_init() {
     return 0;
 }
 
+int decode_table_check() {
+    //This is the really simple start detection.
+    //Check if the decode table exists or not.
+    //If exists, said initialization finished, or else initial it.
+    int dec_table_exist = file_detection("dectable.txt");
+    if (dec_table_exist == 0) {
+        printf("The decode table does not initialized, initializing...\n");
+        decode_table_init();
+    }
+    else {
+        printf("The decode table exists, initialization has been finished.\n");
+    }
+    return 0;
+}

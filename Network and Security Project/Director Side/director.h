@@ -5,4 +5,5 @@
 
 #include "../Global/general.h"
 
-int rec_reg(char *ana_type, int deviceID, char *IPaddress);
+extern int rec_reg(char *ana_type, int deviceID, char *IPaddress);
+extern int network_module();

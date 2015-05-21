@@ -16,7 +16,7 @@ int rec_reg(char *ana_type, int deviceID, char *IPaddress) {//receive registrati
     //step one, check if the analysis list exists or not.
     int analy_exist = file_detection("analyst_list");
     if (analy_exist == 0) {
-        printf("Analyst file does not exist, generating one.");
+        printf("Analyst file does not exist, generating one.\n");
         FILE *analist = fopen("analyst_list", "w");
         fprintf(analist, "%s\t%d\t%s\n", ana_type, deviceID, IPaddress);
         fclose(analist);

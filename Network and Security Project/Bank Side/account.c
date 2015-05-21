@@ -109,7 +109,7 @@ int device_authentication(int account_number, int deviceID) {
         int dev_ID = atoi(strtok(NULL, "\n"));
         if (account_number == acct_num && deviceID == dev_ID)
             return 1402;
-        else
+        else if (account_number == acct_num)
             return 1403;
     }
     return 0;

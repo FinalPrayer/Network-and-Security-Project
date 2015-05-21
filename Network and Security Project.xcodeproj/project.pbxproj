@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D847E39D1B0DAEF60065AEBE /* director.c in Sources */ = {isa = PBXBuildFile; fileRef = D847E39B1B0DAEF60065AEBE /* director.c */; };
+		D847E3A01B0DCDBB0065AEBE /* analysis.c in Sources */ = {isa = PBXBuildFile; fileRef = D847E39E1B0DCDBB0065AEBE /* analysis.c */; };
+		D847E3A21B0DD06C0065AEBE /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A11B0DD06C0065AEBE /* makefile */; };
+		D847E3A41B0DD1BA0065AEBE /* director_net.c in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A31B0DD1BA0065AEBE /* director_net.c */; };
+		D847E3A61B0DD2310065AEBE /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A51B0DD2310065AEBE /* makefile */; };
 		D855E6A71B0CFA2D008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A61B0CFA2D008DE4F7 /* makefile */; };
 		D855E6A91B0CFDC5008DE4F7 /* eCent_client.c in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */; };
 		D855E6AB1B0D01C2008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6AA1B0D01C2008DE4F7 /* makefile */; };
@@ -41,6 +45,11 @@
 /* Begin PBXFileReference section */
 		D847E39B1B0DAEF60065AEBE /* director.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = director.c; path = "Director Side/director.c"; sourceTree = "<group>"; };
 		D847E39C1B0DAEF60065AEBE /* director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = director.h; path = "Director Side/director.h"; sourceTree = "<group>"; };
+		D847E39E1B0DCDBB0065AEBE /* analysis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = analysis.c; path = "Analysis Side/analysis.c"; sourceTree = "<group>"; };
+		D847E39F1B0DCDBB0065AEBE /* analysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = analysis.h; path = "Analysis Side/analysis.h"; sourceTree = "<group>"; };
+		D847E3A11B0DD06C0065AEBE /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Analysis Side/makefile"; sourceTree = "<group>"; };
+		D847E3A31B0DD1BA0065AEBE /* director_net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = director_net.c; path = "Director Side/director_net.c"; sourceTree = "<group>"; };
+		D847E3A51B0DD2310065AEBE /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Director Side/makefile"; sourceTree = "<group>"; };
 		D855E6A61B0CFA2D008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Bank Side/makefile"; sourceTree = "<group>"; };
 		D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = eCent_client.c; path = "Collecter Side/eCent_client.c"; sourceTree = "<group>"; };
 		D855E6AA1B0D01C2008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Collecter Side/makefile"; sourceTree = "<group>"; };
@@ -136,6 +145,9 @@
 			children = (
 				D8CD7CF31B0AFA0100BAA6C3 /* decode.c */,
 				D856DAE21B0B84FC001B7ED6 /* ana_reg.c */,
+				D847E39E1B0DCDBB0065AEBE /* analysis.c */,
+				D847E39F1B0DCDBB0065AEBE /* analysis.h */,
+				D847E3A11B0DD06C0065AEBE /* makefile */,
 			);
 			name = "Analysis Side";
 			sourceTree = "<group>";
@@ -146,6 +158,8 @@
 				D856DADE1B0B82CD001B7ED6 /* identify.c */,
 				D847E39B1B0DAEF60065AEBE /* director.c */,
 				D847E39C1B0DAEF60065AEBE /* director.h */,
+				D847E3A31B0DD1BA0065AEBE /* director_net.c */,
+				D847E3A51B0DD2310065AEBE /* makefile */,
 			);
 			name = "Director Side";
 			sourceTree = "<group>";
@@ -219,9 +233,12 @@
 				D847E39D1B0DAEF60065AEBE /* director.c in Sources */,
 				D8F3EE3A1B06202E009EFBD6 /* transaction.c in Sources */,
 				D856DADD1B0B6C01001B7ED6 /* collecter.c in Sources */,
+				D847E3A01B0DCDBB0065AEBE /* analysis.c in Sources */,
 				D8CD7CF01B0AF32200BAA6C3 /* data.c in Sources */,
 				D856DADF1B0B82CD001B7ED6 /* identify.c in Sources */,
+				D847E3A21B0DD06C0065AEBE /* makefile in Sources */,
 				D8F3EE3D1B062170009EFBD6 /* account.c in Sources */,
+				D847E3A61B0DD2310065AEBE /* makefile in Sources */,
 				D856DAE11B0B83DD001B7ED6 /* col_reg.c in Sources */,
 				D855E6AB1B0D01C2008DE4F7 /* makefile in Sources */,
 				D8F3EE421B063FFD009EFBD6 /* eCent.c in Sources */,
@@ -231,6 +248,7 @@
 				D855E6A91B0CFDC5008DE4F7 /* eCent_client.c in Sources */,
 				D8F3EE381B061D7A009EFBD6 /* bank.c in Sources */,
 				D856DAE51B0C6E13001B7ED6 /* bank_net.c in Sources */,
+				D847E3A41B0DD1BA0065AEBE /* director_net.c in Sources */,
 				D8F3EE451B0643DC009EFBD6 /* general.c in Sources */,
 				D856DAE31B0B84FC001B7ED6 /* ana_reg.c in Sources */,
 			);

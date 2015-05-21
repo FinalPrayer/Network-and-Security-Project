@@ -1,11 +1,3 @@
-//
-//  director.c
-//  Network and Security Project
-//
-//  Created by Ricardo Shura on 5/21/15.
-//  Copyright (c) 2015 Ricardo Shura. All rights reserved.
-//
-
 #include "director.h"
 
 int network_module(){
@@ -28,14 +20,15 @@ int network_module(){
     while (1) {
         addr_size = sizeof serverStorage;
         acceptedSocket = accept(initialSocket, (struct sockaddr *) &serverStorage, &addr_size);
-        
         char requestReceive[MAXDATASIZE];
         recv(acceptedSocket, requestReceive, MAXDATASIZE, 0);
         //so far, the requestReceive contains the whole request from the server, therefore analysis is the only job to do.
         //backup
-        char *commandtype = strtok(requestReceive, "\n");
+        char *commandtype = strtok(requestReceive, "\t");
         //This part is the register from analysis.
+        //the structure of the request is: type \t analysistype \t deviceID
         if (strcmp(commandtype, ACT_REGISTER) == 0) {
+            printf("Incoming application registration request.\n");
             char *analysisType = strtok(NULL, "\t");
             if (analysisType == NULL) {
                 char *code = "400";
