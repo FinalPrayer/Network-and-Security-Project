@@ -151,7 +151,6 @@ int network_module(){
                         int deviID = atoi(strtok(NULL, "\t"));
                         char thingsToSend[9];
                         sprintf(thingsToSend,"%i", deviID);
-                        printf("sent: %s\n", thingsToSend);
                         send(acceptedSocket, thingsToSend, sizeof(thingsToSend), 0);
                         char rec_code[3];
                         recv(acceptedSocket, rec_code, 3, 0);
@@ -207,7 +206,7 @@ int network_module(){
                         recv(acceptedSocket, rec_code, 3, 0);
                     }
                     send(acceptedSocket, ok, sizeof(ok), 0);
-                    printf("decoded file has been successfully sent to director.\n");
+                    printf("decoded file has been successfully sent back to collecter.\n");
                     remove("temp");
 
                 }

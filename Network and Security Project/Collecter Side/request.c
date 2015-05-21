@@ -99,7 +99,7 @@ int request_analysis(char *cryptedContent){
         int return_code = atoi(return_num);
         if (return_code == 0) {
             remove("usedeCent");
-            printf("director return finished signal, ask for receving decoded file.");
+            printf("director return finished signal, ask for receving decoded file.\n");
             char ok[MAX_ERROR_NUM];
             sprintf(ok, "0");
             send(connectionSocket, ok, sizeof(ok), 0);
@@ -118,6 +118,16 @@ int request_analysis(char *cryptedContent){
             }
             printf("received decoded file.\n");
             fclose(decrypt);
+            FILE *read = fopen("decrypted", "r");
+            size_t linecap = 0;
+            char *line = NULL;
+            ssize_t linelen;
+            //load by line
+            printf("\ndecrypted file: \n");
+            while ((linelen = getline(&line, &linecap, read)) > 0) {
+                printf("%s", line);
+            }
+            printf("\n");
         }
         else {
             return auth_code(return_code);

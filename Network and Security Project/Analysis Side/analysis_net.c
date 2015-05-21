@@ -32,7 +32,6 @@ int network_module(){
         char requestReceive[MAXDATASIZE];
         //receive the request from director, contains request type, eCent address, and the crypted things.
         recv(acceptedSocket, requestReceive, MAXDATASIZE, 0);
-        printf("request is: %s\n", requestReceive);
         //backup
         char *commandtype = strtok(requestReceive, "\t");
         //This part is the register part.
@@ -69,6 +68,7 @@ int network_module(){
                     send(acceptedSocket, ok, sizeof(ok), 0);
                     printf("decoded file has been successfully sent to director.\n");
                     remove("decrypt_temp");
+                    printf("\n");
                 }
             } else {
                 char return_code[MAX_ERROR_NUM];
