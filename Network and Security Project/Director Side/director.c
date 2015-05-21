@@ -1,18 +1,12 @@
 //
-//  bank_net.c
+//  director.c
 //  Network and Security Project
 //
-//  Created by Ricardo Shura on 5/20/15.
+//  Created by Ricardo Shura on 5/21/15.
 //  Copyright (c) 2015 Ricardo Shura. All rights reserved.
 //
 
-#include "bank.h"
-
-//Way to startup server.
-
-char *type_identify(char *received_data) {
-    return strtok(received_data, "\t");
-}
+#include "director.h"
 
 int network_module(){
     int initialSocket, acceptedSocket;
@@ -21,13 +15,13 @@ int network_module(){
     socklen_t addr_size;
     initialSocket = socket(PF_INET, SOCK_STREAM, 0);
     serverAddr.sin_family = AF_INET;
-    int portnum = NETWORK_BANK_PORT;
+    int portnum = NETWORK_DIRECTOR_ACCEPT_PORT;
     serverAddr.sin_port = htons(portnum);
     serverAddr.sin_addr.s_addr = inet_addr("0.0.0.0"); //for all range lisen.
     memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
     bind(initialSocket, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
     if(listen(initialSocket,5)==0)
-        printf("The bank server has been successfully initialized.\n");
+        printf("The director server has been successfully initialized.\n");
     else
         printf("Error on the server.\n");
     //accept for unlimited connections.
@@ -106,7 +100,6 @@ int network_module(){
                 }
                 send(acceptedSocket, code, sizeof(code), 0);
                 printf("eCent transfer completed.\n");
-                remove("temp");
             } else {
                 printf("Returning eCent error code %d back to client to open eCent transfer.", convert_result);
                 char code[MAX_ERROR_NUM];

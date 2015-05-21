@@ -41,6 +41,8 @@
  make sure all applications have the same place to connect.
  */
 #define NETWORK_BANK_PORT 6666
+#define NETWORK_DIRECTOR_ACCEPT_PORT 6667
+#define NETWORK_ANALYSIS_ACCEPT_PORT 6668
 #define MAXDATASIZE 10240
 #define MAX_ERROR_NUM 7
 

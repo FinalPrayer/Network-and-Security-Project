@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D847E39D1B0DAEF60065AEBE /* director.c in Sources */ = {isa = PBXBuildFile; fileRef = D847E39B1B0DAEF60065AEBE /* director.c */; };
 		D855E6A71B0CFA2D008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A61B0CFA2D008DE4F7 /* makefile */; };
 		D855E6A91B0CFDC5008DE4F7 /* eCent_client.c in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */; };
 		D855E6AB1B0D01C2008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6AA1B0D01C2008DE4F7 /* makefile */; };
@@ -38,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D847E39B1B0DAEF60065AEBE /* director.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = director.c; path = "Director Side/director.c"; sourceTree = "<group>"; };
+		D847E39C1B0DAEF60065AEBE /* director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = director.h; path = "Director Side/director.h"; sourceTree = "<group>"; };
 		D855E6A61B0CFA2D008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Bank Side/makefile"; sourceTree = "<group>"; };
 		D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = eCent_client.c; path = "Collecter Side/eCent_client.c"; sourceTree = "<group>"; };
 		D855E6AA1B0D01C2008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Collecter Side/makefile"; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				D856DADE1B0B82CD001B7ED6 /* identify.c */,
+				D847E39B1B0DAEF60065AEBE /* director.c */,
+				D847E39C1B0DAEF60065AEBE /* director.h */,
 			);
 			name = "Director Side";
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D847E39D1B0DAEF60065AEBE /* director.c in Sources */,
 				D8F3EE3A1B06202E009EFBD6 /* transaction.c in Sources */,
 				D856DADD1B0B6C01001B7ED6 /* collecter.c in Sources */,
 				D8CD7CF01B0AF32200BAA6C3 /* data.c in Sources */,

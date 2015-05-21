@@ -10,7 +10,7 @@
  for simplified this project, assume the analysis datatype is called:charToWord, and this will send from the analysis.
  */
 
-#include <stdio.h>
+#include "director.h"
 
 int rec_reg(int ana_type, int deviceID) { //receive registration
     return 0;
