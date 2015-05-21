@@ -56,6 +56,9 @@ int auth_code(int authentication_result) {
         case 1404:
             printf("Device not yet Registered\nYou cannot use eCent function without register.\n");
             return 1;
+        case 1405:
+            printf("Warning: device registration with different IP address\nPlease contact the director if you moved your server.\n");
+            return 1;
         default:
             printf("Incorrect Value.\n");
     }

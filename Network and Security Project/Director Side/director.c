@@ -33,19 +33,11 @@ int network_module(){
         recv(acceptedSocket, requestReceive, MAXDATASIZE, 0);
         //so far, the requestReceive contains the whole request from the server, therefore analysis is the only job to do.
         //backup
-        char *commandtype = type_identify(requestReceive);
-        //This part is the register part.
+        char *commandtype = strtok(requestReceive, "\n");
+        //This part is the register from analysis.
         if (strcmp(commandtype, ACT_REGISTER) == 0) {
-            printf("Incoming register request transmission.\n");
-            //if any of their data invalid, return 400.
-            int accountNumber = atoi(strtok(NULL, "\t"));
-            if (accountNumber == 0) {
-                char *code = "400";
-                send(acceptedSocket, code, sizeof(code), 0);
-                continue;
-            }
-            char *password = strtok(NULL, "\t");
-            if (password == NULL) {
+            char *analysisType = strtok(NULL, "\t");
+            if (analysisType == NULL) {
                 char *code = "400";
                 send(acceptedSocket, code, sizeof(code), 0);
                 continue;
@@ -56,56 +48,17 @@ int network_module(){
                 send(acceptedSocket, code, sizeof(code), 0);
                 continue;
             }
-            int register_result = device_registration(accountNumber, password, deviceID);
+            //get the IP address of the socket.
+            char IPaddress[INET_ADDRSTRLEN];
+            struct sockaddr_in* ipv4address = (struct sockaddr_in*)&serverAddr;
+            int address_buffer = ipv4address->sin_addr.s_addr;
+            inet_ntop( AF_INET, &address_buffer, IPaddress, INET_ADDRSTRLEN);
+            //stat ask background application to work.
+            int reg_result = rec_reg(analysisType, deviceID, IPaddress);
             char code[MAX_ERROR_NUM];
-            sprintf(code, "%d", register_result);
-            printf("Returning registration result code: %d back to original.\n", register_result);
+            sprintf(code, "%d", reg_result);
+            printf("Returning registration result code: %d back to original.\n", reg_result);
             send(acceptedSocket, code, sizeof(code), 0);
-        }
-        //here is the way to receive command and generate eCent. hmmmm.
-        else if (strcmp(commandtype, ACT_ECENT_GENERATE) == 0) {
-            printf("Incoming eCent generate request transmission.\n");
-            int volumes = atoi(strtok(NULL, "\t"));
-            if (volumes == 0) {
-                char *code = "400";
-                send(acceptedSocket, code, sizeof(code), 0);
-                continue;
-            }
-            int deviceID = atoi(strtok(NULL, "\n"));
-            if (deviceID == 0) {
-                char *code = "400";
-                send(acceptedSocket, code, sizeof(code), 0);
-                continue;
-            }
-            int convert_result = cash_to_eCent(volumes, deviceID);
-            if (convert_result == 0) {
-                printf("Returning eCent success message back to client to open eCent transfer.\n");
-                char code[MAX_ERROR_NUM];
-                sprintf(code, "%d", convert_result);
-                send(acceptedSocket, code, sizeof(code), 0);
-                //after the success code has been opened, start the eCent transfer.
-                FILE *eCentTrans = fopen("temp", "r");
-                size_t linecap = 0;
-                char *line = NULL;
-                ssize_t linelen;
-                //load by line
-                printf("start transferring eCent list to client...\n");
-                while ((linelen = getline(&line, &linecap, eCentTrans)) > 0) {
-                    //To make sure sending and receiving would not being error, try to use another character to send.
-                    char buffer2[ECENT_LENGTH+3];
-                    strcpy(buffer2, line);
-                    send(acceptedSocket, buffer2, ECENT_LENGTH+3, 0);
-                    char rec_code[3];
-                    recv(acceptedSocket, rec_code, 3, 0);
-                }
-                send(acceptedSocket, code, sizeof(code), 0);
-                printf("eCent transfer completed.\n");
-            } else {
-                printf("Returning eCent error code %d back to client to open eCent transfer.", convert_result);
-                char code[MAX_ERROR_NUM];
-                sprintf(code, "%d", convert_result);
-                send(acceptedSocket, code, sizeof(code), 0);
-            }
         }
     }
     return 0;

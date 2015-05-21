@@ -51,6 +51,9 @@
  */
 #define ACT_REGISTER "register"
 #define ACT_ECENT_GENERATE "generate"
+#define ACT_ECENT_REEDOM "reedom"
+#define ACT_ANALYSIS "analyse"
+#define ACT_ANALYSIS_TYPE "char2word"
 
 #define ECENT_LENGTH 25
 
