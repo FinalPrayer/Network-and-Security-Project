@@ -7,7 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D855E6A71B0CFA2D008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A61B0CFA2D008DE4F7 /* makefile */; };
+		D855E6A91B0CFDC5008DE4F7 /* eCent_client.c in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */; };
+		D855E6AB1B0D01C2008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6AA1B0D01C2008DE4F7 /* makefile */; };
+		D856DADD1B0B6C01001B7ED6 /* collecter.c in Sources */ = {isa = PBXBuildFile; fileRef = D856DADC1B0B6C01001B7ED6 /* collecter.c */; };
+		D856DADF1B0B82CD001B7ED6 /* identify.c in Sources */ = {isa = PBXBuildFile; fileRef = D856DADE1B0B82CD001B7ED6 /* identify.c */; };
+		D856DAE11B0B83DD001B7ED6 /* col_reg.c in Sources */ = {isa = PBXBuildFile; fileRef = D856DAE01B0B83DD001B7ED6 /* col_reg.c */; };
+		D856DAE31B0B84FC001B7ED6 /* ana_reg.c in Sources */ = {isa = PBXBuildFile; fileRef = D856DAE21B0B84FC001B7ED6 /* ana_reg.c */; };
+		D856DAE51B0C6E13001B7ED6 /* bank_net.c in Sources */ = {isa = PBXBuildFile; fileRef = D856DAE41B0C6E13001B7ED6 /* bank_net.c */; };
+		D8CD7CF01B0AF32200BAA6C3 /* data.c in Sources */ = {isa = PBXBuildFile; fileRef = D8CD7CEF1B0AF32200BAA6C3 /* data.c */; };
+		D8CD7CF41B0AFA0100BAA6C3 /* decode.c in Sources */ = {isa = PBXBuildFile; fileRef = D8CD7CF31B0AFA0100BAA6C3 /* decode.c */; };
 		D8CF3C961B0109430007F03C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D8CF3C951B0109430007F03C /* main.c */; };
+		D8F3EE381B061D7A009EFBD6 /* bank.c in Sources */ = {isa = PBXBuildFile; fileRef = D8F3EE361B061D7A009EFBD6 /* bank.c */; };
+		D8F3EE3A1B06202E009EFBD6 /* transaction.c in Sources */ = {isa = PBXBuildFile; fileRef = D8F3EE391B06202E009EFBD6 /* transaction.c */; };
+		D8F3EE3D1B062170009EFBD6 /* account.c in Sources */ = {isa = PBXBuildFile; fileRef = D8F3EE3C1B062170009EFBD6 /* account.c */; };
+		D8F3EE421B063FFD009EFBD6 /* eCent.c in Sources */ = {isa = PBXBuildFile; fileRef = D8F3EE411B063FFD009EFBD6 /* eCent.c */; };
+		D8F3EE451B0643DC009EFBD6 /* general.c in Sources */ = {isa = PBXBuildFile; fileRef = D8F3EE431B0643DC009EFBD6 /* general.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +38,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D855E6A61B0CFA2D008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Bank Side/makefile"; sourceTree = "<group>"; };
+		D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = eCent_client.c; path = "Collecter Side/eCent_client.c"; sourceTree = "<group>"; };
+		D855E6AA1B0D01C2008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Collecter Side/makefile"; sourceTree = "<group>"; };
+		D856DADC1B0B6C01001B7ED6 /* collecter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = collecter.c; path = "Collecter Side/collecter.c"; sourceTree = "<group>"; };
+		D856DADE1B0B82CD001B7ED6 /* identify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = identify.c; path = "Director Side/identify.c"; sourceTree = "<group>"; };
+		D856DAE01B0B83DD001B7ED6 /* col_reg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = col_reg.c; path = "Collecter Side/col_reg.c"; sourceTree = "<group>"; };
+		D856DAE21B0B84FC001B7ED6 /* ana_reg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ana_reg.c; path = "Analysis Side/ana_reg.c"; sourceTree = "<group>"; };
+		D856DAE41B0C6E13001B7ED6 /* bank_net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bank_net.c; path = "Bank Side/bank_net.c"; sourceTree = "<group>"; };
+		D8CD7CEF1B0AF32200BAA6C3 /* data.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = data.c; path = "Collecter Side/data.c"; sourceTree = "<group>"; };
+		D8CD7CF21B0AF96900BAA6C3 /* collecter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = collecter.h; path = "Collecter Side/collecter.h"; sourceTree = "<group>"; };
+		D8CD7CF31B0AFA0100BAA6C3 /* decode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = decode.c; path = "Analysis Side/decode.c"; sourceTree = "<group>"; };
 		D8CF3C921B0109430007F03C /* Network and Security Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Network and Security Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CF3C951B0109430007F03C /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		D8F3EE361B061D7A009EFBD6 /* bank.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bank.c; path = "Bank Side/bank.c"; sourceTree = "<group>"; };
+		D8F3EE391B06202E009EFBD6 /* transaction.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = transaction.c; path = "Bank Side/transaction.c"; sourceTree = "<group>"; };
+		D8F3EE3B1B062053009EFBD6 /* bank.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bank.h; path = "Bank Side/bank.h"; sourceTree = "<group>"; };
+		D8F3EE3C1B062170009EFBD6 /* account.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = account.c; path = "Bank Side/account.c"; sourceTree = "<group>"; };
+		D8F3EE401B062A7A009EFBD6 /* account.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = account.h; path = Global/account.h; sourceTree = "<group>"; };
+		D8F3EE411B063FFD009EFBD6 /* eCent.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = eCent.c; path = "Bank Side/eCent.c"; sourceTree = "<group>"; };
+		D8F3EE431B0643DC009EFBD6 /* general.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = general.c; path = Global/general.c; sourceTree = "<group>"; };
+		D8F3EE441B0643DC009EFBD6 /* general.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = general.h; path = Global/general.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +91,7 @@
 		D8CF3C941B0109430007F03C /* Network and Security Project */ = {
 			isa = PBXGroup;
 			children = (
+				D8F3EE3F1B062A4F009EFBD6 /* Global */,
 				D8CF3C9F1B0109930007F03C /* Director Side */,
 				D8CF3C9E1B0109860007F03C /* Analysis Side */,
 				D8CF3C9D1B0109540007F03C /* Bank Side */,
@@ -69,6 +104,12 @@
 		D8CF3C9C1B01094C0007F03C /* Collecter Side */ = {
 			isa = PBXGroup;
 			children = (
+				D8CD7CEF1B0AF32200BAA6C3 /* data.c */,
+				D8CD7CF21B0AF96900BAA6C3 /* collecter.h */,
+				D856DADC1B0B6C01001B7ED6 /* collecter.c */,
+				D856DAE01B0B83DD001B7ED6 /* col_reg.c */,
+				D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */,
+				D855E6AA1B0D01C2008DE4F7 /* makefile */,
 			);
 			name = "Collecter Side";
 			sourceTree = "<group>";
@@ -76,6 +117,13 @@
 		D8CF3C9D1B0109540007F03C /* Bank Side */ = {
 			isa = PBXGroup;
 			children = (
+				D8F3EE361B061D7A009EFBD6 /* bank.c */,
+				D8F3EE391B06202E009EFBD6 /* transaction.c */,
+				D8F3EE3B1B062053009EFBD6 /* bank.h */,
+				D8F3EE3C1B062170009EFBD6 /* account.c */,
+				D8F3EE411B063FFD009EFBD6 /* eCent.c */,
+				D856DAE41B0C6E13001B7ED6 /* bank_net.c */,
+				D855E6A61B0CFA2D008DE4F7 /* makefile */,
 			);
 			name = "Bank Side";
 			sourceTree = "<group>";
@@ -83,6 +131,8 @@
 		D8CF3C9E1B0109860007F03C /* Analysis Side */ = {
 			isa = PBXGroup;
 			children = (
+				D8CD7CF31B0AFA0100BAA6C3 /* decode.c */,
+				D856DAE21B0B84FC001B7ED6 /* ana_reg.c */,
 			);
 			name = "Analysis Side";
 			sourceTree = "<group>";
@@ -90,8 +140,19 @@
 		D8CF3C9F1B0109930007F03C /* Director Side */ = {
 			isa = PBXGroup;
 			children = (
+				D856DADE1B0B82CD001B7ED6 /* identify.c */,
 			);
 			name = "Director Side";
+			sourceTree = "<group>";
+		};
+		D8F3EE3F1B062A4F009EFBD6 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				D8F3EE401B062A7A009EFBD6 /* account.h */,
+				D8F3EE431B0643DC009EFBD6 /* general.c */,
+				D8F3EE441B0643DC009EFBD6 /* general.h */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +211,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F3EE3A1B06202E009EFBD6 /* transaction.c in Sources */,
+				D856DADD1B0B6C01001B7ED6 /* collecter.c in Sources */,
+				D8CD7CF01B0AF32200BAA6C3 /* data.c in Sources */,
+				D856DADF1B0B82CD001B7ED6 /* identify.c in Sources */,
+				D8F3EE3D1B062170009EFBD6 /* account.c in Sources */,
+				D856DAE11B0B83DD001B7ED6 /* col_reg.c in Sources */,
+				D855E6AB1B0D01C2008DE4F7 /* makefile in Sources */,
+				D8F3EE421B063FFD009EFBD6 /* eCent.c in Sources */,
 				D8CF3C961B0109430007F03C /* main.c in Sources */,
+				D855E6A71B0CFA2D008DE4F7 /* makefile in Sources */,
+				D8CD7CF41B0AFA0100BAA6C3 /* decode.c in Sources */,
+				D855E6A91B0CFDC5008DE4F7 /* eCent_client.c in Sources */,
+				D8F3EE381B061D7A009EFBD6 /* bank.c in Sources */,
+				D856DAE51B0C6E13001B7ED6 /* bank_net.c in Sources */,
+				D8F3EE451B0643DC009EFBD6 /* general.c in Sources */,
+				D856DAE31B0B84FC001B7ED6 /* ana_reg.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +343,7 @@
 				D8CF3C9B1B0109430007F03C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
