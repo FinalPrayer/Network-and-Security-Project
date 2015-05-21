@@ -91,10 +91,10 @@ int eCent_to_cash(char* eCent_address, int deviceID) {
                     used = 1;
                 } else {
                     used = -1;
-                    fprintf(eCentnew, "%s\t%d",eCentaddr, ownership);
+                    fprintf(eCentnew, "%s\t%d\n",eCentaddr, ownership);
                 }
             } else {
-                fprintf(eCentnew, "%s\t%d",eCentaddr, ownership);
+                fprintf(eCentnew, "%s\t%d\n",eCentaddr, ownership);
             }
         }
         fclose(eCentnew);

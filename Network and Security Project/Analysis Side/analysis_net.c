@@ -45,6 +45,35 @@ int network_module(){
             int eCent_use_result = eCent_use(eCent_address);
             if (eCent_use_result == 0) {
                 //if the eCent has been successfully transfer, receive data from director.
+                int result = decode_run(crypted_data);
+                if (result == 0) {
+                    //decode has been finished
+                    char return_code[MAX_ERROR_NUM];
+                    strcpy(return_code, "0");
+                    printf("decode has been finished, sending finished signal to director.\n");
+                    send(acceptedSocket, return_code, MAX_ERROR_NUM, 0);
+                    char ok[MAX_ERROR_NUM];
+                    recv(acceptedSocket, ok, MAX_ERROR_NUM, 0);
+                    FILE * decoded = fopen("decrypt_temp", "r");
+                    size_t linecap = 0;
+                    char *line = NULL;
+                    ssize_t linelen;
+                    //load by line
+                    while ((linelen = getline(&line, &linecap, decoded)) > 0) {
+                        char buffer[80];
+                        strcpy(buffer, line);
+                        send(acceptedSocket, buffer, 80, 0);
+                        char rec_code[3];
+                        recv(acceptedSocket, rec_code, 3, 0);
+                    }
+                    send(acceptedSocket, ok, sizeof(ok), 0);
+                    printf("decoded file has been successfully sent to director.\n");
+                    remove("decrypt_temp");
+                }
+            } else {
+                char return_code[MAX_ERROR_NUM];
+                sprintf(return_code, "%d", eCent_use_result);
+                send(acceptedSocket, return_code, MAX_ERROR_NUM, 0);
             }
         }
     }

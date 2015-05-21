@@ -9,8 +9,6 @@
 #include "analysis.h"
 
 int main() {
-    //step one: get the analysis resources online.
-    decode_table_check();
     //get the ip table online.
     address_initialization();
     //after the table has been check, set up the connection from the analysis to the bank, to register the account with their deviceID.

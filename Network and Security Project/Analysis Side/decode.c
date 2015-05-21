@@ -8,7 +8,94 @@
 
 #include "analysis.h"
 
-int decode_table_init() {
+int decrypt_bychar(char character) {
+    FILE *decryp = fopen("decrypt_temp", "a+");
+    switch (character) {
+        case 'a':
+            fprintf(decryp, "anal");
+            break;
+        case 'b':
+            fprintf(decryp, "boy");
+            break;
+        case 'c':
+            fprintf(decryp, "catch");
+            break;
+        case 'd':
+            fprintf(decryp, "drama");
+            break;
+        case 'e':
+            fprintf(decryp, "ethical");
+            break;
+        case 'f':
+            fprintf(decryp, "farms");
+            break;
+        case 'g':
+            fprintf(decryp, "get");
+            break;
+        case 'h':
+            fprintf(decryp, "hell");
+            break;
+        case 'i':
+            fprintf(decryp, "is");
+            break;
+        case 'j':
+            fprintf(decryp, "jesus");
+            break;
+        case 'k':
+            fprintf(decryp, "knows");
+            break;
+        case 'l':
+            fprintf(decryp, "learning");
+            break;
+        case 'm':
+            fprintf(decryp, "makes");
+            break;
+        case 'n':
+            fprintf(decryp, "new");
+            break;
+        case 'o':
+            fprintf(decryp, "orchester");
+            break;
+        case 'p':
+            fprintf(decryp, "pause");
+            break;
+        case 'q':
+            fprintf(decryp, "question");
+            break;
+        case 'r':
+            fprintf(decryp, "rising");
+            break;
+        case 's':
+            fprintf(decryp, "shock");
+            break;
+        case 't':
+            fprintf(decryp, "terrorism");
+            break;
+        case 'u':
+            fprintf(decryp, "union");
+            break;
+        case 'v':
+            fprintf(decryp, "vector");
+            break;
+        case 'w':
+            fprintf(decryp, "warframe");
+            break;
+        case 'x':
+            fprintf(decryp, "xylotol");
+            break;
+        case 'y':
+            fprintf(decryp, "yelling");
+            break;
+        case 'z':
+            fprintf(decryp, "zack");
+            break;
+    }
+    fclose(decryp);
+    return 0;
+}
+
+
+int decode_run(char crypted[]) {
     /*
      Okay, so this is only the decoder table to generate in the analysis table.
      a = anal   b = boy c = catch   d = drama
@@ -19,47 +106,27 @@ int decode_table_init() {
      u = union  v = vector  w = warframe    x = xylotol
      y = yelling    z = zack
      */
-    FILE *dectable = fopen("dectable.txt", "w+");
-    fprintf(dectable, "a\tanal\n");
-    fprintf(dectable, "b\tboy\n");
-    fprintf(dectable, "c\tcatch\n");
-    fprintf(dectable, "d\tdrama\n");
-    fprintf(dectable, "e\tethical\n");
-    fprintf(dectable, "f\tfarms\n");
-    fprintf(dectable, "g\tget\n");
-    fprintf(dectable, "h\thell\n");
-    fprintf(dectable, "i\tis\n");
-    fprintf(dectable, "j\tjesus\n");
-    fprintf(dectable, "k\tknows\n");
-    fprintf(dectable, "l\tlearning\n");
-    fprintf(dectable, "m\tmakes\n");
-    fprintf(dectable, "n\tnew\n");
-    fprintf(dectable, "o\torchester\n");
-    fprintf(dectable, "p\tpause\n");
-    fprintf(dectable, "q\tquestion\n");
-    fprintf(dectable, "r\trising\n");
-    fprintf(dectable, "s\tshock\n");
-    fprintf(dectable, "t\tterrorism\n");
-    fprintf(dectable, "u\tunion\n");
-    fprintf(dectable, "v\tvector\n");
-    fprintf(dectable, "w\twarframe\n");
-    fprintf(dectable, "x\txylotol\n");
-    fprintf(dectable, "y\tyelling\n");
-    fprintf(dectable, "z\tzack\n");
-    return 0;
-}
+    printf("decrypting code...\n");
+    int place = 0;
+    while (1) {
+        if (crypted[place] != '\0') {
+            decrypt_bychar(crypted[place]);
+            if (crypted[place + 1] != '\0') {
+                if ((place + 1) % 5 == 0) {
+                    FILE *decryp = fopen("decrypt_temp", "a+");
+                    fprintf(decryp, "\n");
+                    fclose(decryp);
+                } else {
+                    FILE *decryp = fopen("decrypt_temp", "a+");
+                    fprintf(decryp, "\t");
+                    fclose(decryp);
+                }
 
-int decode_table_check() {
-    //This is the really simple start detection.
-    //Check if the decode table exists or not.
-    //If exists, said initialization finished, or else initial it.
-    int dec_table_exist = file_detection("dectable.txt");
-    if (dec_table_exist == 0) {
-        printf("The decode table does not initialized, initializing...\n");
-        decode_table_init();
-    }
-    else {
-        printf("The decode table exists, initialization has been finished.\n");
+            } else {
+                break;
+            }
+            place++;
+        }
     }
     return 0;
 }

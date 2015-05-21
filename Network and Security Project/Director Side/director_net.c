@@ -42,8 +42,33 @@ int send_toAnalysis(char *eCent_add, char *cryptedData) {
     printf("Forwarding analysis request to the analysis.\n");
     sprintf(command, "%s\t%s\t%s", commandtype, eCent_add, cryptedData);
     send(connectionSocket, command, sizeof(command), 0);
-    //char return_code[MAX_ERROR_NUM];
-    //recv(connectionSocket, return_code, MAX_ERROR_NUM, 0);
+    //receive the code to see if the decode has been success or not.
+    char return_code[MAX_ERROR_NUM];
+    recv(connectionSocket, return_code, MAX_ERROR_NUM, 0);
+    int return_num = atoi(return_code);
+    if (return_num == 0) {
+        printf("received finished signal, start receiving decoded file.\n");
+        char ok[MAX_ERROR_NUM];
+        FILE *temp = fopen("temp", "w");
+        sprintf(ok, "0");
+        send(connectionSocket, ok, sizeof(ok), 0);
+        char receivedBuffer[80];
+        while(1)
+        {
+            recv(connectionSocket, receivedBuffer, 80, 0);
+            if (strcmp(receivedBuffer, "0") == 0) {
+                break;
+            }
+            fprintf(temp, "%s", receivedBuffer);
+            char sen_code[3];
+            strcpy(sen_code, "0");
+            send(connectionSocket, sen_code, sizeof(sen_code), 0);
+        }
+        printf("received decoded file.\n");
+        fclose(temp);
+    } else {
+        return return_num;
+    }
     return 0;
 }
 
@@ -162,7 +187,35 @@ int network_module(){
                 recv(acceptedSocket, crypted, MAXDATASIZE, 0);
                 //okay, now we have the crypted data, the eCent, and the request. time to ask the analysis to work.
                 //things has been received.
-                send_toAnalysis(eCentAdd, crypted);
+                int communicate_result = send_toAnalysis(eCentAdd, crypted);
+                if (communicate_result == 0) {
+                    //received decoded data, send back to the
+                    printf("forwarding decrypted file to collecter.\n");
+                    send(acceptedSocket, received, sizeof(received), 0);
+                    char ok[MAX_ERROR_NUM];
+                    recv(acceptedSocket, ok, MAX_ERROR_NUM, 0);
+                    FILE * decoded = fopen("temp", "r");
+                    size_t linecap = 0;
+                    char *line = NULL;
+                    ssize_t linelen;
+                    //load by line
+                    while ((linelen = getline(&line, &linecap, decoded)) > 0) {
+                        char buffer[80];
+                        strcpy(buffer, line);
+                        send(acceptedSocket, buffer, 80, 0);
+                        char rec_code[3];
+                        recv(acceptedSocket, rec_code, 3, 0);
+                    }
+                    send(acceptedSocket, ok, sizeof(ok), 0);
+                    printf("decoded file has been successfully sent to director.\n");
+                    remove("temp");
+
+                }
+                else {
+                    char error_code[MAX_ERROR_NUM];
+                    sprintf(error_code,"%d", communicate_result);
+                    send(acceptedSocket, error_code, sizeof(error_code), 0);
+                }
             }
         }
         printf("\n");
