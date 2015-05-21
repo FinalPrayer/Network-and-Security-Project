@@ -7,3 +7,4 @@
 
 extern int rec_reg(char *ana_type, int deviceID, char *IPaddress);
 extern int network_module();
+extern int ana_init();

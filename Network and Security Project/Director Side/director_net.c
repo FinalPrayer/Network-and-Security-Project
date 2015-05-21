@@ -1,5 +1,23 @@
 #include "director.h"
 
+int ana_init() {
+    int ana_exist = file_detection("analysisaddress");
+    if (ana_exist == 0) {
+        char anaadd[16];
+        printf("Please enter the IP address for the analysis:");
+        scanf("%s", anaadd);
+        FILE *analysisaddress = fopen("analysisaddress", "w");
+        fprintf(analysisaddress, "%s", anaadd);
+        fclose(analysisaddress);
+    }
+    if (ana_exist == 1) {
+        printf("The IP address table found, skipping initialization.\n");
+    } else {
+        printf("The IP address has been successfully initialized.\n");
+    }
+    return 0;
+}
+
 int network_module(){
     int initialSocket, acceptedSocket;
     struct sockaddr_in serverAddr;
@@ -42,12 +60,11 @@ int network_module(){
                 continue;
             }
             //get the IP address of the socket.
-            char IPaddress[INET_ADDRSTRLEN];
-            struct sockaddr_in* ipv4address = (struct sockaddr_in*)&serverAddr;
-            int address_buffer = ipv4address->sin_addr.s_addr;
-            inet_ntop( AF_INET, &address_buffer, IPaddress, INET_ADDRSTRLEN);
+            FILE *analyadd = fopen("analysisaddress", "r");
+            char analysisaddress[16];
+            fgets(analysisaddress, 16, analyadd);
             //stat ask background application to work.
-            int reg_result = rec_reg(analysisType, deviceID, IPaddress);
+            int reg_result = rec_reg(analysisType, deviceID, analysisaddress);
             char code[MAX_ERROR_NUM];
             sprintf(code, "%d", reg_result);
             printf("Returning registration result code: %d back to original.\n", reg_result);
