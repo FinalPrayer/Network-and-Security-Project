@@ -15,8 +15,8 @@ int main(int argc, char *argv[]) {
     account_register_toBank();
     int balance = eCent_balance();
     if (balance == 0) {
-        printf("Balance is equal to 0, get 100 from the bank.\n");
-        eCent_get(100);
+        printf("Balance is equal to 0, get 50 from the bank.\n");
+        eCent_get(50);
     }else {
         printf("eCent Balance: %d\n", balance);
     }

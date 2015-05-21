@@ -9,7 +9,7 @@
  are link to the specific device ID.
  
  REMEMBER:
- 100 eCent = 1 Dollar
+ 1 eCent = 1 Dollar
  */
 
 #include "bank.h"

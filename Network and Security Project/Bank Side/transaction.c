@@ -10,7 +10,7 @@
 #include "bank.h"
 
 int fund_reduce(int eCentVolume, int account_num) {
-    float moneyToCost = eCentVolume / 100;
+    float moneyToCost = eCentVolume;
     FILE *accountData = fopen("accounts.txt", "r");
     FILE *accountDataNew = fopen("account_temp.txt", "w");
     size_t linecap = 0;
