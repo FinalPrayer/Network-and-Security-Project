@@ -9,11 +9,6 @@
 #include "bank.h"
 
 //Way to startup server.
-
-char *type_identify(char *received_data) {
-    return strtok(received_data, "\t");
-}
-
 int network_module(){
     int initialSocket, acceptedSocket;
     struct sockaddr_in serverAddr;
@@ -39,7 +34,7 @@ int network_module(){
         recv(acceptedSocket, requestReceive, MAXDATASIZE, 0);
         //so far, the requestReceive contains the whole request from the server, therefore analysis is the only job to do.
         //backup
-        char *commandtype = type_identify(requestReceive);
+        char *commandtype = strtok(requestReceive, "\t");
         //This part is the register part.
         if (strcmp(commandtype, ACT_REGISTER) == 0) {
             printf("Incoming register request transmission.\n");
@@ -114,6 +109,30 @@ int network_module(){
                 send(acceptedSocket, code, sizeof(code), 0);
             }
         }
+        //here is the eCent transfer command
+        else if (strcmp(commandtype, ACT_ECENT_TRANSFER) == 0) {
+            printf("Incoming eCent transfer request transmission.\n");
+            char *eCent_addr = strtok(NULL, "\t");
+            int orig_devID = atoi(strtok(NULL, "\t"));
+            int dest_devID = atoi(strtok(NULL, "\n"));
+            int transfer_result = eCent_transfer(eCent_addr, orig_devID, dest_devID);
+            printf("sending transfer result code %d to client...\n", transfer_result);
+            char transfer_code[MAX_ERROR_NUM];
+            sprintf(transfer_code, "%d", transfer_result);
+            send(acceptedSocket, transfer_code, sizeof(transfer_code), 0);
+        }
+        //and here is the eCent reedom command
+        else if (strcmp(commandtype, ACT_ECENT_REEDOM) == 0) {
+            printf("Incoming eCent reedom request transmission.\n");
+            char *eCent_addr = strtok(NULL, "\t");
+            int devID = atoi(strtok(NULL, "\n"));
+            int transfer_result = eCent_to_cash(eCent_addr, devID);
+            printf("sending transfer result code %d to client...\n", transfer_result);
+            char transfer_code[MAX_ERROR_NUM];
+            sprintf(transfer_code, "%d", transfer_result);
+            send(acceptedSocket, transfer_code, sizeof(transfer_code), 0);
+        }
+        printf("\n");
     }
     return 0;
 }

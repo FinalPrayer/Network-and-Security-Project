@@ -57,3 +57,51 @@ int list_available(){
     }
     return auth_code(results);
 }
+int request_analysis(char *cryptedContent){
+    //Second, connection.
+    int connectionSocket;
+    struct sockaddr_in server_address;
+    socklen_t addr_size;
+    connectionSocket = socket(PF_INET, SOCK_STREAM, 0);
+    server_address.sin_family = AF_INET;
+    int portnum = NETWORK_DIRECTOR_ACCEPT_PORT;
+    server_address.sin_port = htons(portnum);
+    //This part will take the address from file.
+    FILE *bankadd = fopen("directeraddress", "r");
+    char bankaddress[16];
+    fgets(bankaddress, 16, bankadd);
+    fclose(bankadd);
+    server_address.sin_addr.s_addr = inet_addr(bankaddress);
+    memset(server_address.sin_zero, '\0', sizeof(server_address.sin_zero));
+    addr_size = sizeof server_address;
+    connect(connectionSocket, (struct sockaddr *) &server_address, addr_size);
+    //construct the eCent transfer command to send
+    char command[MAXDATASIZE];
+    char *commandtype = ACT_ANALYSIS;
+    //the commandrequest. generate eCent, volume number, and the AppID.
+    printf("Sending analysis request to the the director...\n");
+    FILE *trans_eCent = fopen("usedeCent", "r");
+    char eCents[ECENT_LENGTH+1];
+    fgets(eCents, ECENT_LENGTH+1, trans_eCent);
+    sprintf(command, "%s\t%s", commandtype, eCents);
+    send(connectionSocket, command, sizeof(command), 0);
+    char return_code[MAX_ERROR_NUM];
+    recv(connectionSocket, return_code, MAX_ERROR_NUM, 0);
+    int results = atoi(return_code);
+    if (results == 0) {
+        //means the director got the message, and ask for the crypted string
+        printf("director received request, sending data.\n");
+        send(connectionSocket, cryptedContent, DATA_LENGTH+3, 0);
+        //the crypted things sent.
+        char decoded[MAXDATASIZE];
+        while (1) {
+            recv(connectionSocket, decoded, MAXDATASIZE, 0);
+            if (strcmp(decoded, "0") == 0) {
+                break;
+            }
+            printf("%s", decoded);
+        }
+        return 0;
+    }
+    return auth_code(results);
+}

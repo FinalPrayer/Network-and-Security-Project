@@ -91,10 +91,10 @@ int eCent_to_cash(char* eCent_address, int deviceID) {
                     used = 1;
                 } else {
                     used = -1;
-                    fprintf(eCentnew, "%s",line);
+                    fprintf(eCentnew, "%s\t%d",eCentaddr, ownership);
                 }
             } else {
-                fprintf(eCentnew, "%s",line);
+                fprintf(eCentnew, "%s\t%d",eCentaddr, ownership);
             }
         }
         fclose(eCentnew);
@@ -104,7 +104,7 @@ int eCent_to_cash(char* eCent_address, int deviceID) {
         if (used == -1) {
             return 1300;
         } else if (used == 1) { //After this is used.
-            FILE *accountData = fopen("account.txt", "r");
+            FILE *accountData = fopen("accounts.txt", "r");
             FILE *accountDataNew = fopen("account_temp.txt", "w");
             size_t linecap = 0;
             char *line = NULL;
@@ -114,16 +114,16 @@ int eCent_to_cash(char* eCent_address, int deviceID) {
                 char *accountPassword = strtok(NULL, "\t");
                 float balance = atof(strtok(NULL, "\n"));
                 if (accountNumber == account_num) {
-                    float newBalance = balance + 0.01;
+                    float newBalance = balance + 1;
                     fprintf(accountDataNew, "%i\t%s\t%f\n", accountNumber, accountPassword, newBalance);
                 } else {
-                    fprintf(accountDataNew, "%s", line);
+                    fprintf(accountDataNew, "%i\t%s\t%f\n", accountNumber, accountPassword, balance);
                 }
             }
             //close file
             fclose(accountData);
             fclose(accountDataNew);
-            rename("account_temp.txt", "account.txt");
+            rename("account_temp.txt", "accounts.txt");
             //after this time the funds has been add to here and therefore return 0 means success.
             return 0;
         }
@@ -149,10 +149,10 @@ int eCent_transfer(char* eCent_address, int deviceID_orig, int deviceID_dest) {
                 fprintf(eCentdata_new, "%s\t%i\n", eCentaddr, deviceID_dest);
             } else {
                 return_code = 1300;
-                fprintf(eCentdata_new, "%s", line);
+                fprintf(eCentdata_new, "%s\t%i\n", eCentaddr, orig_belong);
             }
         } else {
-            fprintf(eCentdata_new, "%s", line);
+            fprintf(eCentdata_new, "%s\t%i\n", eCentaddr, orig_belong);
         }
     }
     fclose(eCentdata_new);

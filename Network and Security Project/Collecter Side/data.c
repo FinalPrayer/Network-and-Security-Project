@@ -19,7 +19,7 @@ char random_data_character () {
 }
 
 void random_data(char* array) {
-    for (int i = 0; i < DATA_LENGTH; i++) {
+    for (int i = 0; i < DATA_LENGTH+1; i++) {
         array[i] = random_data_character();
         if (array[i] == '\0') {
             array[i] = random_data_character();
@@ -27,13 +27,8 @@ void random_data(char* array) {
         if (array[i] == '\0') {
             array[i] = random_data_character();
         }
+        if (i == DATA_LENGTH) {
+            array[i] = '\0';
+        }
     }
-}
-
-char *data_generate () {
-    char temp[DATA_LENGTH];
-    temp[0] = '\0';
-    random_data(temp);
-    char *result = temp;
-    return result;
 }

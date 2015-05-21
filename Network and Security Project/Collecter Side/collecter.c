@@ -11,6 +11,7 @@
 #include "collecter.h"
 
 int main(int argc, char *argv[]) {
+    srand((int)time(NULL));
     address_initialization();
     account_register_toBank();
     int balance = eCent_balance();
@@ -20,6 +21,24 @@ int main(int argc, char *argv[]) {
     }else {
         printf("eCent Balance: %d\n", balance);
     }
-    list_available();
+    int available_result = list_available();
+    if (available_result != 0) {
+        return 1;
+    }
+    //generate the data.
+    char rand_data[DATA_LENGTH+1];
+    rand_data[0] = '\0';
+    random_data(rand_data);
+    //before the final step start, call the bank to transfer the eCent.
+    int transfer_result = eCent_transfer_toAnalysis();
+    if (transfer_result != 0) {
+        return transfer_result;
+    }
+    printf("crypted code: %s\n", rand_data);
+    int analysis_result = request_analysis(rand_data);
+    if (analysis_result != 0)
+    {
+        return analysis_result;
+    }
     return 0;
 }

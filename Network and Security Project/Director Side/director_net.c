@@ -18,6 +18,35 @@ int ana_init() {
     return 0;
 }
 
+int send_toAnalysis(char *eCent_add, char *cryptedData) {
+    //Second, connection.
+    int connectionSocket;
+    struct sockaddr_in server_address;
+    socklen_t addr_size;
+    connectionSocket = socket(PF_INET, SOCK_STREAM, 0);
+    server_address.sin_family = AF_INET;
+    int portnum = NETWORK_ANALYSIS_ACCEPT_PORT;
+    server_address.sin_port = htons(portnum);
+    //This part will take the address from file.
+    FILE *analadd = fopen("analysisaddress", "r");
+    char analysisaddress[16];
+    fgets(analysisaddress, 16, analadd);
+    server_address.sin_addr.s_addr = inet_addr(analysisaddress);
+    memset(server_address.sin_zero, '\0', sizeof(server_address.sin_zero));
+    addr_size = sizeof server_address;
+    connect(connectionSocket, (struct sockaddr *) &server_address, addr_size);
+    //construct the eCent transfer command to send
+    char command[MAXDATASIZE];
+    char *commandtype = ACT_ANALYSIS;
+    //the commandrequest. generate eCent, volume number, and the AppID.
+    printf("Forwarding analysis request to the analysis.\n");
+    sprintf(command, "%s\t%s\t%s", commandtype, eCent_add, cryptedData);
+    send(connectionSocket, command, sizeof(command), 0);
+    //char return_code[MAX_ERROR_NUM];
+    //recv(connectionSocket, return_code, MAX_ERROR_NUM, 0);
+    return 0;
+}
+
 int network_module(){
     int initialSocket, acceptedSocket;
     struct sockaddr_in serverAddr;
@@ -117,6 +146,26 @@ int network_module(){
             }
             
         }
+        //This part is the final part: receive the data from collecter and communicate with the analysis.
+        else if (strcmp(commandtype, ACT_ANALYSIS) == 0) {
+            //step one, take the eCent from the list.
+            printf("received analysis request.\n");
+            char *eCentAdd = strtok(NULL, "\n");
+            if (strcmp(eCentAdd, "") != 0) {
+                //got the eCent data, tell collecter "I've got the message" and ask for the crypted data.
+                char received[MAX_ERROR_NUM];
+                printf("sending received signal.\n");
+                strcpy(received, "0");
+                send(acceptedSocket, received, sizeof(received), 0);
+                char crypted[MAXDATASIZE];
+                printf("receiving crypted data.\n");
+                recv(acceptedSocket, crypted, MAXDATASIZE, 0);
+                //okay, now we have the crypted data, the eCent, and the request. time to ask the analysis to work.
+                //things has been received.
+                send_toAnalysis(eCentAdd, crypted);
+            }
+        }
+        printf("\n");
     }
     return 0;
 }
