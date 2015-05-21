@@ -20,4 +20,5 @@ int main() {
     //after the account has been register to the bank, register this application to the director.
     printf("start registering to the director...\n");
     app_register_toDirector();
+    
 }

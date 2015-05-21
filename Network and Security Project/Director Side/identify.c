@@ -47,3 +47,26 @@ int rec_reg(char *ana_type, int deviceID, char *IPaddress) {//receive registrati
     }
     return 0;
 }
+
+int reg_check(char *anal_type) { //remember, this anal is not equal to *that* anal.
+    int reg_exist = file_detection("analyst_list");
+    if (reg_exist == 0) {
+        return 2404;
+    }
+    FILE *anal_list = fopen("analyst_list", "r");
+    int counter = 0;
+    size_t linecap = 0;
+    char *line = NULL;
+    ssize_t linelen;
+    while ((linelen = getline(&line, &linecap, anal_list)) > 0) {
+        char *analyst = strtok(line, "\t");
+        if (strcmp(analyst, anal_type) == 0) {
+            counter++;
+        }
+    }
+    //if nothing found
+    fclose(anal_list);
+    if (counter == 0)
+        return 2404;
+    return 0; //found something.
+}

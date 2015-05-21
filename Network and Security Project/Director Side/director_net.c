@@ -70,6 +70,53 @@ int network_module(){
             printf("Returning registration result code: %d back to original.\n", reg_result);
             send(acceptedSocket, code, sizeof(code), 0);
         }
+        //part for the analysis listing.
+        else if (strcmp(commandtype, ACT_ANALYSIS_LIST) == 0) {
+            printf("Incoming analysis availability listing request.\n");
+            char * analysis_type = strtok(NULL, "\n");
+            if (analysis_type == NULL) {
+                char *code = "400";
+                send(acceptedSocket, code, sizeof(code), 0);
+                continue;
+            }
+            int anal_result = reg_check(analysis_type);
+            if (anal_result == 0) {
+                printf("Returning eCent success message back to client to open eCent transfer.\n");
+                char code[MAX_ERROR_NUM];
+                sprintf(code, "%d", anal_result);
+                send(acceptedSocket, code, sizeof(code), 0);
+                //after the success code has been opened, start the eCent transfer.
+                FILE *analList = fopen("analyst_list", "r");
+                size_t linecap = 0;
+                char *line = NULL;
+                ssize_t linelen;
+                while ((linelen = getline(&line, &linecap, analList)) > 0) {
+                    //To make sure sending and receiving would not being error, try to use another character to send.
+                    char *analtype = strtok(line, "\t");
+                    if (strcmp(analtype, analysis_type) == 0) {
+                        int deviID = atoi(strtok(NULL, "\t"));
+                        char thingsToSend[9];
+                        sprintf(thingsToSend,"%i", deviID);
+                        printf("sent: %s\n", thingsToSend);
+                        send(acceptedSocket, thingsToSend, sizeof(thingsToSend), 0);
+                        char rec_code[3];
+                        recv(acceptedSocket, rec_code, 3, 0);
+                    }
+                }
+                send(acceptedSocket, code, sizeof(code), 0);
+                fclose(analList);
+                //load by line
+                printf("start transferring analysis available list to client...\n");
+                send(acceptedSocket, code, sizeof(code), 0);
+                printf("analysis available transfer completed.\n");
+            } else {
+                printf("return error code: %d to the client.\n", anal_result);
+                char code_return[MAX_ERROR_NUM];
+                sprintf(code_return, "%d", anal_result);
+                send(acceptedSocket, code_return, sizeof(code_return), 0);
+            }
+            
+        }
     }
     return 0;
 }

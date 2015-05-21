@@ -54,6 +54,7 @@
 #define ACT_ECENT_REEDOM "reedom"
 #define ACT_ANALYSIS "analyse"
 #define ACT_ANALYSIS_TYPE "char2word"
+#define ACT_ANALYSIS_LIST "list"
 
 #define ECENT_LENGTH 25
 

@@ -9,6 +9,7 @@
 
 int main() {
     //straightly start the network module.
+    ana_init();
     network_module();
     return 0;
 }

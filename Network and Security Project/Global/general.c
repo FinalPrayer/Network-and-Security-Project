@@ -59,6 +59,9 @@ int auth_code(int authentication_result) {
         case 1405:
             printf("Warning: device registration with different IP address\nPlease contact the director if you moved your server.\n");
             return 1;
+        case 2404:
+            printf("Analysis List not Found.\nNone of device available for decode your stuff found.\n");
+            return 1;
         default:
             printf("Incorrect Value.\n");
     }

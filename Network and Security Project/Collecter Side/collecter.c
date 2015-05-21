@@ -20,5 +20,6 @@ int main(int argc, char *argv[]) {
     }else {
         printf("eCent Balance: %d\n", balance);
     }
+    list_available();
     return 0;
 }

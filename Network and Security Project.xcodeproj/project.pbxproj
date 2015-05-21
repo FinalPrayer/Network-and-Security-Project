@@ -12,6 +12,7 @@
 		D847E3A21B0DD06C0065AEBE /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A11B0DD06C0065AEBE /* makefile */; };
 		D847E3A41B0DD1BA0065AEBE /* director_net.c in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A31B0DD1BA0065AEBE /* director_net.c */; };
 		D847E3A61B0DD2310065AEBE /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A51B0DD2310065AEBE /* makefile */; };
+		D847E3A81B0DE8BB0065AEBE /* request.c in Sources */ = {isa = PBXBuildFile; fileRef = D847E3A71B0DE8BB0065AEBE /* request.c */; };
 		D855E6A71B0CFA2D008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A61B0CFA2D008DE4F7 /* makefile */; };
 		D855E6A91B0CFDC5008DE4F7 /* eCent_client.c in Sources */ = {isa = PBXBuildFile; fileRef = D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */; };
 		D855E6AB1B0D01C2008DE4F7 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = D855E6AA1B0D01C2008DE4F7 /* makefile */; };
@@ -50,6 +51,7 @@
 		D847E3A11B0DD06C0065AEBE /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Analysis Side/makefile"; sourceTree = "<group>"; };
 		D847E3A31B0DD1BA0065AEBE /* director_net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = director_net.c; path = "Director Side/director_net.c"; sourceTree = "<group>"; };
 		D847E3A51B0DD2310065AEBE /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Director Side/makefile"; sourceTree = "<group>"; };
+		D847E3A71B0DE8BB0065AEBE /* request.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = request.c; path = "Collecter Side/request.c"; sourceTree = "<group>"; };
 		D855E6A61B0CFA2D008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Bank Side/makefile"; sourceTree = "<group>"; };
 		D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = eCent_client.c; path = "Collecter Side/eCent_client.c"; sourceTree = "<group>"; };
 		D855E6AA1B0D01C2008DE4F7 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = makefile; path = "Collecter Side/makefile"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				D856DAE01B0B83DD001B7ED6 /* col_reg.c */,
 				D855E6A81B0CFDC5008DE4F7 /* eCent_client.c */,
 				D855E6AA1B0D01C2008DE4F7 /* makefile */,
+				D847E3A71B0DE8BB0065AEBE /* request.c */,
 			);
 			name = "Collecter Side";
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				D856DADD1B0B6C01001B7ED6 /* collecter.c in Sources */,
 				D847E3A01B0DCDBB0065AEBE /* analysis.c in Sources */,
 				D8CD7CF01B0AF32200BAA6C3 /* data.c in Sources */,
+				D847E3A81B0DE8BB0065AEBE /* request.c in Sources */,
 				D856DADF1B0B82CD001B7ED6 /* identify.c in Sources */,
 				D847E3A21B0DD06C0065AEBE /* makefile in Sources */,
 				D8F3EE3D1B062170009EFBD6 /* account.c in Sources */,
