@@ -18,3 +18,6 @@ director_net.o : director_net.c director.h ../Global/general.h ../Global/account
 
 general.o : ../Global/general.c ../Global/general.h
 	$(C99) $(CFLAGS) -c ../Global/general.c
+
+clean :
+	rm director director.o identify.o director_net.o general.o analysisaddress analyst_list

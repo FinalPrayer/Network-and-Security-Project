@@ -24,3 +24,6 @@ analysis_ecent.o : analysis_ecent.c analysis.h ../Global/general.h ../Global/acc
 
 general.o : ../Global/general.c ../Global/general.h
 	$(C99) $(CFLAGS) -c ../Global/general.c
+
+clean :
+	rm analysis analysis.o decode.o ana_reg.o general.o analysis_net.o analysis_ecent.o bankaddress directeraddress 

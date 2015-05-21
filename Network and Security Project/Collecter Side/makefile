@@ -24,3 +24,6 @@ request.o : request.c collecter.h ../Global/general.h ../Global/account.h
 
 general.o : ../Global/general.c ../Global/general.h
 	$(C99) $(CFLAGS) -c ../Global/general.c
+
+clean :
+	rm collecter collecter.o data.o col_reg.o eCent_client.o general.o request.o analysis_available.txt decrypted bankaddress directeraddress eCents.txt
