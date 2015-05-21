@@ -12,14 +12,13 @@
 
 int main(int argc, char *argv[]) {
     address_initialization();
-    printf("Please type in the action to do - [R]egister, [G]enerate:");
-    char act[3];
-    scanf("%s", act);
-    if (strcmp(act, "r") == 0) {
-        account_register_toBank();
-    }
-    if (strcmp(act, "g") == 0) {
-        eCent_get();
+    account_register_toBank();
+    int balance = eCent_balance();
+    if (balance == 0) {
+        printf("Balance is equal to 0, get 100 from the bank.\n");
+        eCent_get(100);
+    }else {
+        printf("eCent Balance: %d\n", balance);
     }
     return 0;
 }

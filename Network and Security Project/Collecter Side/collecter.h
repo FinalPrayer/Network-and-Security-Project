@@ -12,4 +12,5 @@
 extern char *data_generate ();
 extern int address_initialization();
 extern int account_register_toBank();
-extern int eCent_get();
+extern int eCent_get(int volumeToGen);
+extern int eCent_balance();

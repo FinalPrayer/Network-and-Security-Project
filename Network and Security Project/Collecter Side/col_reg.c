@@ -61,6 +61,7 @@ int account_register_toBank(){
     send(connectionSocket, command, sizeof(command), 0);
     char return_code[MAX_ERROR_NUM];
     recv(connectionSocket, return_code, MAX_ERROR_NUM, 0);
+    printf("Bank - Account Registration status:");
     int results = auth_code(atoi(return_code));
     return results;
 }

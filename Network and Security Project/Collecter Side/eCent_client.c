@@ -8,12 +8,24 @@
 
 #include "collecter.h"
 
-int eCent_get(){
-    //First prompt for the volumes that wants to be generate.
-    char volumes[8];
-    printf("Please input the volume of eCent you want to generate:");
-    scanf("%s",volumes);
-    int volumeToGen = atoi(volumes);
+int eCent_balance() {
+    int balance = 0;
+    int file_exists = file_detection("eCents.txt");
+    if (file_exists == 0) {
+        balance = 0;
+    } else {
+        FILE *eCent_table = fopen("eCents.txt", "r");
+        size_t linecap = 0;
+        char *line = NULL;
+        ssize_t linelen;
+        while ((linelen = getline(&line, &linecap, eCent_table)) > 0) {
+            balance++;
+        }
+    }
+    return balance;
+}
+
+int eCent_get(int volumeToGen){
     //Second, connection.
     int connectionSocket;
     struct sockaddr_in server_address;
