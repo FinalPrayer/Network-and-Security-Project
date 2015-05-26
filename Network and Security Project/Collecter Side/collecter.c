@@ -34,7 +34,6 @@ int main(int argc, char *argv[]) {
     if (transfer_result != 0) {
         return transfer_result;
     }
-    printf("crypted code: %s\n", rand_data);
     int analysis_result = request_analysis(rand_data);
     if (analysis_result != 0)
     {

@@ -174,16 +174,12 @@ int network_module(){
         else if (strcmp(commandtype, ACT_ANALYSIS) == 0) {
             //step one, take the eCent from the list.
             printf("received analysis request.\n");
-            char *eCentAdd = strtok(NULL, "\n");
-            if (strcmp(eCentAdd, "") != 0) {
+            char *eCentAdd = strtok(NULL, "\t");
+            char *crypted = strtok(NULL, "\n");
+            if (strcmp(eCentAdd, "") != 0 && strcmp(crypted, "") != 0) {
                 //got the eCent data, tell collecter "I've got the message" and ask for the crypted data.
                 char received[MAX_ERROR_NUM];
-                printf("sending received signal.\n");
                 strcpy(received, "0");
-                send(acceptedSocket, received, sizeof(received), 0);
-                char crypted[MAXDATASIZE];
-                printf("receiving crypted data.\n");
-                recv(acceptedSocket, crypted, MAXDATASIZE, 0);
                 printf("received crypted data: %s\n",crypted);
                 //okay, now we have the crypted data, the eCent, and the request. time to ask the analysis to work.
                 //things has been received.

@@ -83,56 +83,46 @@ int request_analysis(char *cryptedContent){
     FILE *trans_eCent = fopen("usedeCent", "r");
     char eCents[ECENT_LENGTH+1];
     fgets(eCents, ECENT_LENGTH+1, trans_eCent);
-    sprintf(command, "%s\t%s", commandtype, eCents);
+    sprintf(command, "%s\t%s\t%s", commandtype, eCents, cryptedContent);
     send(connectionSocket, command, sizeof(command), 0);
     char return_code[MAX_ERROR_NUM];
     recv(connectionSocket, return_code, MAX_ERROR_NUM, 0);
     int results = atoi(return_code);
     if (results == 0) {
         //means the director got the message, and ask for the crypted string
-        printf("director received request, sending data.\n");
-        send(connectionSocket, cryptedContent, DATA_LENGTH+3, 0);
-        printf("data sent, awaiting for director respond for result.\n");
-        //the crypted things sent.
-        char return_num[MAX_ERROR_NUM];
-        recv(connectionSocket, return_num, MAX_ERROR_NUM, 0);
-        int return_code = atoi(return_num);
-        if (return_code == 0) {
-            remove("usedeCent");
-            printf("director return finished signal, ask for receving decoded file.\n");
-            char ok[MAX_ERROR_NUM];
-            sprintf(ok, "0");
-            send(connectionSocket, ok, sizeof(ok), 0);
-            FILE * decrypt = fopen("decrypted", "w");
-            char receivedBuffer[80];
-            while(1)
-            {
-                recv(connectionSocket, receivedBuffer, 80, 0);
-                if (strcmp(receivedBuffer, "0") == 0) {
-                    break;
-                }
-                fprintf(decrypt, "%s", receivedBuffer);
-                char sen_code[3];
-                strcpy(sen_code, "0");
-                send(connectionSocket, sen_code, sizeof(sen_code), 0);
+        remove("usedeCent");
+        printf("director return finished signal, ask for receving decoded file.\n");
+        char ok[MAX_ERROR_NUM];
+        sprintf(ok, "0");
+        send(connectionSocket, ok, sizeof(ok), 0);
+        FILE * decrypt = fopen("decrypted", "w");
+        char receivedBuffer[80];
+        while(1)
+        {
+            recv(connectionSocket, receivedBuffer, 80, 0);
+            if (strcmp(receivedBuffer, "0") == 0) {
+                break;
             }
-            printf("received decoded file.\n");
-            fclose(decrypt);
-            FILE *read = fopen("decrypted", "r");
-            size_t linecap = 0;
-            char *line = NULL;
-            ssize_t linelen;
-            //load by line
-            printf("\ndecrypted file: \n");
-            while ((linelen = getline(&line, &linecap, read)) > 0) {
-                printf("%s", line);
-            }
-            printf("\n");
+            fprintf(decrypt, "%s", receivedBuffer);
+            char sen_code[3];
+            strcpy(sen_code, "0");
+            send(connectionSocket, sen_code, sizeof(sen_code), 0);
         }
-        else {
-            return auth_code(return_code);
+        printf("received decoded file.\n");
+        fclose(decrypt);
+        FILE *read = fopen("decrypted", "r");
+        size_t linecap = 0;
+        char *line = NULL;
+        ssize_t linelen;
+        //load by line
+        printf("\ndecrypted file: \n");
+        while ((linelen = getline(&line, &linecap, read)) > 0) {
+            printf("%s", line);
         }
-        return 0;
+        printf("\n");
+    }
+    else {
+        return auth_code(results);
     }
     return auth_code(results);
 }

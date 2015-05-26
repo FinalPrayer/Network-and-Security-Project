@@ -58,6 +58,7 @@
 #define ACT_ANALYSIS_LIST "list"
 
 #define ECENT_LENGTH 25
+#define DATA_LENGTH 25
 
 //Declare the essential code
 extern int file_detection(const char *filename);

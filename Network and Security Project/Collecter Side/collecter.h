@@ -7,7 +7,7 @@
 
 //The length and the character set for the encrypted data.
 #define DATA_CHARSETS "abcdefghijklmnopqrstuvwxyz"
-#define DATA_LENGTH 25
+
 
 extern void random_data(char* array);
 extern int address_initialization();
