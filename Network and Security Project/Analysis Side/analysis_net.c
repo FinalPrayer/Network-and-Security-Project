@@ -60,9 +60,9 @@ int network_module(){
                     ssize_t linelen;
                     //load by line
                     while ((linelen = getline(&line, &linecap, decoded)) > 0) {
-                        char buffer[80];
+                        char buffer[MAXDATASIZE];
                         strcpy(buffer, line);
-                        send(acceptedSocket, buffer, 80, 0);
+                        send(acceptedSocket, buffer, MAXDATASIZE, 0);
                         char rec_code[3];
                         recv(acceptedSocket, rec_code, 3, 0);
                     }

@@ -52,10 +52,10 @@ int send_toAnalysis(char *eCent_add, char *cryptedData) {
         FILE *temp = fopen("temp", "w");
         sprintf(ok, "0");
         send(connectionSocket, ok, sizeof(ok), 0);
-        char receivedBuffer[80];
+        char receivedBuffer[MAXDATASIZE];
         while(1)
         {
-            recv(connectionSocket, receivedBuffer, 80, 0);
+            recv(connectionSocket, receivedBuffer, MAXDATASIZE, 0);
             if (strcmp(receivedBuffer, "0") == 0) {
                 break;
             }
@@ -196,9 +196,9 @@ int network_module(){
                     ssize_t linelen;
                     //load by line
                     while ((linelen = getline(&line, &linecap, decoded)) > 0) {
-                        char buffer[80];
+                        char buffer[MAXDATASIZE];
                         strcpy(buffer, line);
-                        send(acceptedSocket, buffer, 80, 0);
+                        send(acceptedSocket, buffer, MAXDATASIZE, 0);
                         char rec_code[3];
                         recv(acceptedSocket, rec_code, 3, 0);
                     }
