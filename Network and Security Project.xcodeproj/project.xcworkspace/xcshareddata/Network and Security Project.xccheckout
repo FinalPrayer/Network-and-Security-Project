@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E7FD7B3A-98B6-44C5-B599-6E8047F2EE57</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Network and Security Project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>61C0DECA005B2B2A258F22FF9C34603FEDB210B3</key>
+		<string>https://github.com/FinalPrayer/Network-and-Security-Project.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Network and Security Project.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>61C0DECA005B2B2A258F22FF9C34603FEDB210B3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/FinalPrayer/Network-and-Security-Project.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>61C0DECA005B2B2A258F22FF9C34603FEDB210B3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>61C0DECA005B2B2A258F22FF9C34603FEDB210B3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Network%20and%20Security%20Project</string>
+		</dict>
+	</array>
+</dict>
+</plist>

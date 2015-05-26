@@ -40,6 +40,7 @@ int network_module(){
             //if any of their data invalid, return 400.
             char *eCent_address = strtok(NULL, "\t");
             char *crypted_data = strtok(NULL, "\n");
+            printf("Decrypt for: %s\n", crypted_data);
             //after getting the eCent address, contact the bank to reedom to money.
             int eCent_use_result = eCent_use(eCent_address);
             if (eCent_use_result == 0) {

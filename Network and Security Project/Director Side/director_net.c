@@ -184,6 +184,7 @@ int network_module(){
                 char crypted[MAXDATASIZE];
                 printf("receiving crypted data.\n");
                 recv(acceptedSocket, crypted, MAXDATASIZE, 0);
+                printf("received crypted data: %s\n",crypted);
                 //okay, now we have the crypted data, the eCent, and the request. time to ask the analysis to work.
                 //things has been received.
                 int communicate_result = send_toAnalysis(eCentAdd, crypted);
