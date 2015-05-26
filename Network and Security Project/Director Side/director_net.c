@@ -49,13 +49,12 @@ int send_toAnalysis(char *eCent_add, char *cryptedData) {
     if (return_num == 0) {
         printf("received finished signal, start receiving decoded file.\n");
         char ok[MAX_ERROR_NUM];
-        FILE *temp = fopen("temp", "w");
+        FILE *temp = fopen("temp", "a+");
         sprintf(ok, "0");
-        send(connectionSocket, ok, sizeof(ok), 0);
-        char receivedBuffer[MAXDATASIZE];
+        char receivedBuffer[LARGEST_WORD];
         while(1)
         {
-            recv(connectionSocket, receivedBuffer, MAXDATASIZE, 0);
+            recv(connectionSocket, receivedBuffer, LARGEST_WORD, 0);
             if (strcmp(receivedBuffer, "0") == 0) {
                 break;
             }
@@ -189,16 +188,16 @@ int network_module(){
                     printf("forwarding decrypted file to collecter.\n");
                     send(acceptedSocket, received, sizeof(received), 0);
                     char ok[MAX_ERROR_NUM];
-                    recv(acceptedSocket, ok, MAX_ERROR_NUM, 0);
+                    strcpy(ok, "0");
                     FILE * decoded = fopen("temp", "r");
                     size_t linecap = 0;
                     char *line = NULL;
                     ssize_t linelen;
                     //load by line
                     while ((linelen = getline(&line, &linecap, decoded)) > 0) {
-                        char buffer[MAXDATASIZE];
+                        char buffer[LARGEST_WORD];
                         strcpy(buffer, line);
-                        send(acceptedSocket, buffer, MAXDATASIZE, 0);
+                        send(acceptedSocket, buffer, LARGEST_WORD, 0);
                         char rec_code[3];
                         recv(acceptedSocket, rec_code, 3, 0);
                     }

@@ -59,6 +59,7 @@
 
 #define ECENT_LENGTH 25
 #define DATA_LENGTH 25
+#define LARGEST_WORD 12
 
 //Declare the essential code
 extern int file_detection(const char *filename);

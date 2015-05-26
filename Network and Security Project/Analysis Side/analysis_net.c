@@ -53,16 +53,16 @@ int network_module(){
                     printf("decode has been finished, sending finished signal to director.\n");
                     send(acceptedSocket, return_code, MAX_ERROR_NUM, 0);
                     char ok[MAX_ERROR_NUM];
-                    recv(acceptedSocket, ok, MAX_ERROR_NUM, 0);
+                    strcpy(ok, "0");
                     FILE * decoded = fopen("decrypt_temp", "r");
                     size_t linecap = 0;
                     char *line = NULL;
                     ssize_t linelen;
                     //load by line
                     while ((linelen = getline(&line, &linecap, decoded)) > 0) {
-                        char buffer[MAXDATASIZE];
+                        char buffer[LARGEST_WORD];
                         strcpy(buffer, line);
-                        send(acceptedSocket, buffer, MAXDATASIZE, 0);
+                        send(acceptedSocket, buffer, LARGEST_WORD, 0);
                         char rec_code[3];
                         recv(acceptedSocket, rec_code, 3, 0);
                     }

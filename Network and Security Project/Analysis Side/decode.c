@@ -111,18 +111,10 @@ int decode_run(char crypted[]) {
     while (1) {
         if (crypted[place] != '\0') {
             decrypt_bychar(crypted[place]);
-            if (crypted[place + 1] != '\0') {
-                if ((place + 1) % 5 == 0) {
-                    FILE *decryp = fopen("decrypt_temp", "a+");
-                    fprintf(decryp, "\n");
-                    fclose(decryp);
-                } else {
-                    FILE *decryp = fopen("decrypt_temp", "a+");
-                    fprintf(decryp, "\t");
-                    fclose(decryp);
-                }
-
-            } else {
+            FILE *decryp = fopen("decrypt_temp", "a+");
+            fprintf(decryp, "\n");
+            fclose(decryp);
+            if (crypted[place + 1] == '\0') {
                 break;
             }
             place++;

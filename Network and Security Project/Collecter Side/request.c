@@ -93,13 +93,12 @@ int request_analysis(char *cryptedContent){
         remove("usedeCent");
         printf("director return finished signal, ask for receving decoded file.\n");
         char ok[MAX_ERROR_NUM];
-        sprintf(ok, "0");
-        send(connectionSocket, ok, sizeof(ok), 0);
-        FILE * decrypt = fopen("decrypted", "w");
-        char receivedBuffer[80];
+        strcpy(ok, "0");
+        FILE * decrypt = fopen("decrypted", "a+");
+        char receivedBuffer[LARGEST_WORD];
         while(1)
         {
-            recv(connectionSocket, receivedBuffer, 80, 0);
+            recv(connectionSocket, receivedBuffer, LARGEST_WORD, 0);
             if (strcmp(receivedBuffer, "0") == 0) {
                 break;
             }
